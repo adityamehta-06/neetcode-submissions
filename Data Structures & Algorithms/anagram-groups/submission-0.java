@@ -1,0 +1,30 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap <String, ArrayList<String>> map = new HashMap<>();
+
+        for(String word : strs){
+            int [] fre = new int[26];
+
+            for(char ch: word.toCharArray()){
+                fre[ch - 'a']++;
+            }
+            String key = Arrays.toString(fre);
+
+            if(!map.containsKey(key)){
+                map.put(key, new ArrayList<>());
+            }
+
+            map.get(key).add(word);
+
+        }
+
+        List <List<String>> res = new ArrayList<>();
+        for(String key: map.keySet()){
+            res.add(map.get(key));
+        }
+
+        return res;
+
+        
+    }
+}
